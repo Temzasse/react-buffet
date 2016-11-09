@@ -2,17 +2,20 @@
   "name": "react-buffet",
   "version": "0.0.0-semantically-released",
   "description": "Collection of reusable React components",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "directories": {
     "example": "examples",
     "test": "test"
   },
   "scripts": {
     "commit": "git-cz",
-    "check-coverage": "istanbul check-coverage --statements 0 --branches 0 --functions 0 --lines 0",
+    "check-coverage": "nyc check-coverage --statements 0 --branches 0 --functions 0 --lines 0",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
-    "test": "mocha src/index.test.js -w",
-    "test:single": "istanbul cover -x *.test.js _mocha -- -R spec src/index.test.js",
+    "watch:test": "npm t -- -w",
+    "test": "mocha src/index.test.js --compilers js:babel-register",
+    "cover": "nyc npm t",
+    "prebuild": "rimraf dist",
+    "build": "babel --copy-files --out-dir dist --ignore *.test.js src",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
@@ -54,11 +57,13 @@
     "ghooks": "1.3.2",
     "istanbul": "0.4.5",
     "mocha": "3.1.2",
+    "nyc": "8.4.0",
+    "rimraf": "2.5.4",
     "semantic-release": "^4.3.5"
   },
   "config": {
     "ghooks": {
-      "pre-commit": "npm run test:single && npm run check-coverage"
+      "pre-commit": "npm run cover && npm run check-coverage"
     },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"

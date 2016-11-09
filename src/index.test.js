@@ -2,10 +2,10 @@
  * React Buffet tests.
  */
 
-var expect = require('chai').expect;
+import { expect } from 'chai';
 
-describe('react-buffet', function() {
-  it('should just work', function() {
+describe('react-buffet', () => {
+  it('should just work', () => {
     expect(true).to.be.true;
   });
 });
