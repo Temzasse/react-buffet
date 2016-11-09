@@ -1,0 +1,56 @@
+{
+  "name": "react-buffet",
+  "version": "0.0.0-semantically-released",
+  "description": "Collection of reusable React components",
+  "main": "src/index.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "commit": "git-cz",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Temzasse/react-buffet.git"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "kit",
+    "collection"
+  ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "author": "Teemu Taskula <themetor@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Temzasse/react-buffet/issues"
+  },
+  "homepage": "https://github.com/Temzasse/react-buffet#readme",
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-2"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "6.18.0",
+    "babel-preset-es2015": "6.18.0",
+    "babel-preset-react": "6.16.0",
+    "babel-preset-stage-2": "6.18.0",
+    "commitizen": "2.8.6",
+    "cz-conventional-changelog": "1.2.0",
+    "semantic-release": "^4.3.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  }
+}
