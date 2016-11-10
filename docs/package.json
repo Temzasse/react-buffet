@@ -14,11 +14,12 @@
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "fix:static:url": "grep -lr --exclude='./build/\\.*' -e 'static' ./build | xargs sed -i '' 's/\\/static/\\/react-buffet\\/static/g'",
+    "fix:static:url": "grep -lr --exclude='./build/\\.*' -e 'static' ./build | xargs sed -i '' 's/static\\//react-buffet\\/static\\//g'",
     "fix:favicon:url": "sed -i '' 's/\\/favicon/favicon/g' ./build/index.html",
     "fix:urls": "npm run fix:static:url && npm run fix:favicon:url",
     "unfoldbuild": "cp -r ./build/* . && rm -R ./build",
+    "clean": "rm -R ./static",
     "build": "react-scripts build",
-    "postbuild": " npm run fix:urls && npm run unfoldbuild"
+    "postbuild": "npm run fix:urls && npm run clean && npm run unfoldbuild"
   }
 }
