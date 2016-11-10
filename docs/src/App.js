@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 
 // components
-import Tooltip from './components/Tooltip';
+import Tooltip from 'react-buffet/Tooltip';
+import Modal from 'react-buffet/Modal';
 
 class App extends Component {
   render() {
@@ -19,9 +20,8 @@ class App extends Component {
         <Tooltip content='moi'>
           <button>moi</button>
         </Tooltip>
-        <Tooltip content='hei'>
-          <button>hei</button>
-        </Tooltip>
+        <br/>
+        <Modal/>
       </div>
     );
   }

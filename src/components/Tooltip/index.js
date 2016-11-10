@@ -53,6 +53,7 @@ class Tooltip extends Component {
               { visibility: tooltipVisibility, left: lPos },
             ]}
           >
+            <span style={styles.tooltipArrow} />
             {content}
           </div>
           {children}
@@ -64,6 +65,8 @@ class Tooltip extends Component {
 
 
 Tooltip.propTypes = propTypes;
-// Tooltip.defaultProps = {};
+Tooltip.defaultProps = {
+  content: 'tooltip content',
+};
 
 export default Radium(Tooltip);
