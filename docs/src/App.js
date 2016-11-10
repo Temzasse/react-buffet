@@ -19,6 +19,9 @@ class App extends Component {
         <Tooltip content='moi'>
           <button>moi</button>
         </Tooltip>
+        <Tooltip content='hei'>
+          <button>hei</button>
+        </Tooltip>
       </div>
     );
   }
