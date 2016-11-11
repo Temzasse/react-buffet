@@ -1,6 +1,6 @@
 {
   "name": "react-buffet",
-  "version": "0.0.0-semantically-released",
+  "version": "0.0.1",
   "description": "Collection of reusable React components",
   "main": "dist/index.js",
   "directories": {
