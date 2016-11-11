@@ -1,12 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
-
 import styles from './styles';
 
 const propTypes = {
   children: PropTypes.any.isRequired,
   content: PropTypes.string.isRequired,
+  color: PropTypes.string,
+  bg: PropTypes.string,
 };
+
+// Helper
+function isColorValid(c) {
+  const ele = document.createElement('div');
+  ele.style.color = c;
+  return ele.style.color.length;
+}
 
 class Tooltip extends Component {
   constructor(props) {
@@ -34,9 +42,22 @@ class Tooltip extends Component {
   }
 
   render() {
-    const { content, children } = this.props;
+    const { content, children, bg, color } = this.props;
     const { showTooltip, lPos } = this.state;
+
     const tooltipVisibility = showTooltip ? 'visible' : 'hidden';
+    const customColors = {};
+
+    // Add custom colors to tooltip bubble if passed as props
+    if (bg) {
+      if (isColorValid(bg)) {
+        customColors.backgroundColor = bg;
+        customColors.borderColor = bg;
+      }
+    }
+    if (color) {
+      if (isColorValid(color)) customColors.color = color;
+    }
 
     return (
       <div style={styles.Tooltip}>
@@ -50,6 +71,7 @@ class Tooltip extends Component {
             ref={(ref) => { this.tooltipRef = ref; }}
             style={[
               styles.tooltipBubble,
+              customColors,
               { visibility: tooltipVisibility, left: lPos },
             ]}
           >

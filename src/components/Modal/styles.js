@@ -26,7 +26,6 @@ export default {
     boxShadow: '0px 6px 18px rgba(0, 0, 0, 0.7)',
     transform: 'translateY(0)',
     willChange: 'transform',
-    // transition: 'transform 0.2s ease-in',
     transitionProperty: 'transform',
     transitionTimingFunction: 'ease-in',
     transitionDuration: '0.2s',
@@ -58,11 +57,14 @@ export default {
   mWindowCloseIcon: {
     width: 30,
     height: 30,
+    padding: 0,
     backgroundColor: 'transparent',
     border: 'none',
     fontSize: 20,
     color: '#333',
-    textAlign: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     cursor: 'pointer',
     borderRadius: 4,
     opacity: 0.7,
@@ -78,51 +80,6 @@ export default {
     padding: 8,
     flex: 1,
     textAlign: 'left',
-  },
-
-  mWindowFooter: {
-    padding: '8px 16px',
-    backgroundColor: '#f7f7f7',
-    borderTop: '1px solid #eee',
-    borderBottomRightRadius: 6,
-    borderBottomLeftRadius: 6,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-  },
-
-  mWindowFooterContent: {
-    flex: 1,
-    color: '#888',
-    fontSize: 14,
-    textAlign: 'left',
-  },
-
-  mWindowFooterButton: {
-    marginLeft: 16,
-    padding: '6px 10px',
-    border: '1px solid #ccc',
-    backgroundColor: '#eee',
-    borderRadius: 3,
-    cursor: 'pointer',
-
-    '&:hover': {
-      backgroundColor: '#ddd',
-    },
-  },
-
-  mWindowFooterButtonOk: {
-    marginLeft: 16,
-    padding: '6px 10px',
-    borderRadius: 3,
-    cursor: 'pointer',
-    backgroundColor: '#a7e0fb',
-    border: '1px solid #a7e0fb',
-
-    '&:hover': {
-      backgroundColor: '#a7e0fb',
-    },
   },
 
   mBackdrop: {
