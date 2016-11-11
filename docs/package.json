@@ -2,6 +2,17 @@
   "name": "react-buffet-examples",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "node scripts/start.js",
+    "test": "node scripts/test.js --env=jsdom",
+    "fix:static:url": "grep -lr --exclude='./build/\\.*' -e 'static' ./build | xargs sed -i '' 's/static\\//react-buffet\\/static\\//g'",
+    "fix:favicon:url": "sed -i '' 's/\\/favicon/favicon/g' ./build/index.html",
+    "fix:urls": "npm run fix:static:url && npm run fix:favicon:url",
+    "unfoldbuild": "cp -r ./build/* . && rm -R ./build",
+    "clean": "rm -R ./static",
+    "build": "node scripts/build.js",
+    "postbuild": "npm run fix:urls && npm run clean && npm run unfoldbuild"
+  },
   "devDependencies": {
     "autoprefixer": "6.5.1",
     "babel-core": "6.17.0",
@@ -55,17 +66,6 @@
     "react": "15.3.2",
     "react-dom": "15.3.2",
     "react-highlight": "0.9.0"
-  },
-  "scripts": {
-    "start": "node scripts/start.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "fix:static:url": "grep -lr --exclude='./build/\\.*' -e 'static' ./build | xargs sed -i '' 's/static\\//react-buffet\\/static\\//g'",
-    "fix:favicon:url": "sed -i '' 's/\\/favicon/favicon/g' ./build/index.html",
-    "fix:urls": "npm run fix:static:url && npm run fix:favicon:url",
-    "unfoldbuild": "cp -r ./build/* . && rm -R ./build",
-    "clean": "rm -R ./static",
-    "build": "node scripts/build.js",
-    "postbuild": "npm run fix:urls && npm run clean && npm run unfoldbuild"
   },
   "jest": {
     "moduleFileExtensions": [

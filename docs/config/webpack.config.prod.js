@@ -20,6 +20,8 @@ function ensureSlash(path, needsSlash) {
   }
 }
 
+var BUFFET_SRC = path.join(__dirname, '../../src', 'components');
+
 // We use "homepage" field to infer "public path" at which the app is served.
 // Webpack needs to know it to put the right <script> hrefs into HTML even in
 // single-page apps that may serve index.html for nested URLs like /todos/42.
@@ -83,7 +85,9 @@ module.exports = {
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-      'react-native': 'react-native-web'
+      'react-native': 'react-native-web',
+      'react-buffet/Tooltip': path.join(BUFFET_SRC, 'Tooltip'),
+      'react-buffet/Modal': path.join(BUFFET_SRC, 'Modal')
     }
   },
 
@@ -101,7 +105,7 @@ module.exports = {
       // Process JS with Babel.
       {
         test: /\.(js|jsx)$/,
-        include: paths.appSrc,
+        include: [paths.appSrc, BUFFET_SRC],
         loader: 'babel',
 
       },

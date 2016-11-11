@@ -1,7 +1,8 @@
 {
-  "main.css": "react-buffet/static/css/main.9a0fe4f1.css",
-  "main.css.map": "react-buffet/static/css/main.9a0fe4f1.css.map",
-  "main.js": "react-buffet/static/js/main.60df556b.js",
-  "main.js.map": "react-buffet/static/js/main.60df556b.js.map",
-  "react-buffet/static/media/logo.svg": "react-buffet/static/media/logo.5d5d9eef.svg"
+  "main.css": "react-buffet/static/css/main.66f182dc.css",
+  "main.css.map": "react-buffet/static/css/main.66f182dc.css.map",
+  "main.js": "react-buffet/static/js/main.74b12d59.js",
+  "main.js.map": "react-buffet/static/js/main.74b12d59.js.map",
+  "react-buffet/static/media/header-bg.jpg": "react-buffet/static/media/header-bg.19eecf1d.jpg",
+  "react-buffet/static/media/react-buffet-logo2.svg": "react-buffet/static/media/react-buffet-logo2.b136499f.svg"
 }
