@@ -2,8 +2,9 @@ export default {
   Modal: {
     position: 'fixed',
     top: 0,
-    height: '100vh',
-    width: '100vw',
+    bottom: 0,
+    right: 0,
+    left: 0,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -57,7 +58,8 @@ export default {
   mWindowCloseIcon: {
     width: 30,
     height: 30,
-    lineHeight: '30px',
+    backgroundColor: 'transparent',
+    border: 'none',
     fontSize: 20,
     color: '#333',
     textAlign: 'center',

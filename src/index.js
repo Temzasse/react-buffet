@@ -5,7 +5,9 @@
  */
 
 import Tooltip from './components/Tooltip';
+import Modal from './components/Modal';
 
 module.exports = {
   Tooltip,
+  Modal,
 };

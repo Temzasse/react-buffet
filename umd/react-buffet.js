@@ -60,15 +60,22 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Tooltip2 = _interopRequireDefault(_Tooltip);
 
+	var _Modal = __webpack_require__(66);
+
+	var _Modal2 = _interopRequireDefault(_Modal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	/**
+	 * React Buffet
+	 * ------------
+	 * A collection, "buffet", of reusable React components.
+	 */
+
 	module.exports = {
-	  Tooltip: _Tooltip2.default
-	}; /**
-	    * React Buffet
-	    * ------------
-	    * A collection, "buffet", of reusable React components.
-	    */
+	  Tooltip: _Tooltip2.default,
+	  Modal: _Modal2.default
+	};
 
 /***/ },
 /* 1 */
@@ -174,6 +181,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              },
 	              style: [_styles2.default.tooltipBubble, { visibility: tooltipVisibility, left: lPos }]
 	            },
+	            _react2.default.createElement('span', { style: _styles2.default.tooltipArrow }),
 	            content
 	          ),
 	          children
@@ -186,7 +194,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_react.Component);
 
 	Tooltip.propTypes = propTypes;
-	// Tooltip.defaultProps = {};
+	Tooltip.defaultProps = {
+	  content: 'tooltip content'
+	};
 
 	exports.default = (0, _radium2.default)(Tooltip);
 
@@ -4286,46 +4296,325 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Tooltip styles
 	 */
 
-	var $tooltipArrowHeight = 6;
-	var $tooltipZ = 999;
+	var tooltipArrowHeight = 6;
+	var tooltipZ = 999;
 
 	exports.default = {
 	  'Tooltip': {
+	    display: 'inline-block'
+	  },
+
+	  tooltipWrapper: {
+	    display: 'block',
+	    position: 'relative'
+	  },
+
+	  tooltipBubble: {
+	    position: 'absolute',
+	    textAlign: 'center',
+	    bottom: 'calc(100% + ' + tooltipArrowHeight + 'px)',
+	    left: 0,
 	    display: 'inline-block',
+	    backgroundColor: 'rgba(0,0,0,0.8)',
+	    borderRadius: 3,
+	    minHeight: 30,
+	    minWidth: 100,
+	    padding: 6,
+	    color: '#fff',
+	    zIndex: tooltipZ,
+	    fontSize: 12,
+	    boxSizing: 'border-box'
+	  },
 
-	    tooltipWrapper: {
-	      display: 'block',
-	      position: 'relative',
+	  tooltipArrow: {
+	    width: 0,
+	    height: 0,
+	    borderLeft: tooltipArrowHeight + 'px solid transparent',
+	    borderRight: tooltipArrowHeight + 'px solid transparent',
+	    borderTop: tooltipArrowHeight + 'px solid rgba(0,0,0,0.8)',
+	    position: 'absolute',
+	    bottom: '-' + tooltipArrowHeight + 'px',
+	    left: 'calc(50% - ' + tooltipArrowHeight + 'px)'
+	  }
+	};
 
-	      tooltipBubble: {
-	        position: 'absolute',
-	        textAlign: 'center',
-	        bottom: 'calc(100% + ' + $tooltipArrowHeight + ')',
-	        left: 0,
-	        display: 'inline-block',
-	        backgroundColor: 'rgba(0,0,0,08)',
-	        borderRadius: 3,
-	        minHeight: 30,
-	        minWidth: 100,
-	        padding: 6,
-	        color: '#fff',
-	        zIndex: $tooltipZ,
-	        fontSize: 12,
-	        boxSizing: 'border-box',
+/***/ },
+/* 66 */
+/***/ function(module, exports, __webpack_require__) {
 
-	        '&:after': {
-	          content: ' ',
-	          width: 0,
-	          height: 0,
-	          borderLeft: $tooltipArrowHeight + ' solid transparent',
-	          borderRight: $tooltipArrowHeight + ' solid transparent',
-	          borderTop: $tooltipArrowHeight + ' solid rgba(0,0,0,08)',
-	          position: 'absolute',
-	          bottom: -$tooltipArrowHeight,
-	          left: 'calc(50% - ' + $tooltipArrowHeight + ')'
-	        }
-	      }
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _radium = __webpack_require__(3);
+
+	var _radium2 = _interopRequireDefault(_radium);
+
+	var _styles = __webpack_require__(67);
+
+	var _styles2 = _interopRequireDefault(_styles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// Styles
+
+
+	var propTypes = {
+	  headerContent: _react.PropTypes.string,
+	  body: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element]),
+	  footerContent: _react.PropTypes.string,
+	  isOpen: _react.PropTypes.bool.isRequired,
+	  onClosing: _react.PropTypes.func.isRequired
+	};
+
+	var Modal = function (_Component) {
+	  _inherits(Modal, _Component);
+
+	  function Modal(props) {
+	    _classCallCheck(this, Modal);
+
+	    var _this = _possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).call(this, props));
+
+	    _this.close = _this.close.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(Modal, [{
+	    key: 'close',
+	    value: function close() {
+	      this.props.onClosing();
 	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props,
+	          headerContent = _props.headerContent,
+	          footerContent = _props.footerContent,
+	          body = _props.body,
+	          isOpen = _props.isOpen;
+
+
+	      return _react2.default.createElement(
+	        'div',
+	        { style: [_styles2.default.Modal, !isOpen && _styles2.default.ModalHidden] },
+	        _react2.default.createElement(
+	          'div',
+	          { style: [_styles2.default.mWindow, !isOpen && _styles2.default.mWindowHidden] },
+	          _react2.default.createElement(
+	            'div',
+	            { style: _styles2.default.mWindowHeader },
+	            _react2.default.createElement(
+	              'div',
+	              { style: _styles2.default.mWindowHeaderContent },
+	              headerContent
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { style: _styles2.default.mWindowCloseIcon, onClick: this.close },
+	              '\xD7'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: _styles2.default.mWindowBody },
+	            body
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: _styles2.default.mWindowFooter },
+	            _react2.default.createElement(
+	              'div',
+	              { style: _styles2.default.mWindowFooterContent },
+	              footerContent
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { style: _styles2.default.mWindowFooterButton },
+	              'Cancel'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { style: _styles2.default.mWindowFooterButtonOk },
+	              'Accept Terms'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement('div', { style: _styles2.default.mBackdrop, onClick: this.close })
+	      );
+	    }
+	  }]);
+
+	  return Modal;
+	}(_react.Component);
+
+	Modal.propTypes = propTypes;
+	Modal.defaultProps = {
+	  headerContent: 'Hello World',
+	  footerContent: 'footer',
+	  body: 'This is the body of the modal'
+	};
+
+	exports.default = (0, _radium2.default)(Modal);
+
+/***/ },
+/* 67 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  Modal: {
+	    position: 'fixed',
+	    top: 0,
+	    bottom: 0,
+	    right: 0,
+	    left: 0,
+	    display: 'flex',
+	    alignItems: 'center',
+	    justifyContent: 'center',
+	    opacity: 1,
+	    transition: 'opacity 0.3s ease-in',
+	    willChange: 'opacity',
+	    zIndex: 997
+	  },
+
+	  ModalHidden: {
+	    pointerEvents: 'none',
+	    opacity: 0
+	  },
+
+	  mWindow: {
+	    width: '96%',
+	    maxWidth: 500,
+	    minHeight: 300,
+	    boxShadow: '0px 6px 18px rgba(0, 0, 0, 0.7)',
+	    transform: 'translateY(0)',
+	    willChange: 'transform',
+	    // transition: 'transform 0.2s ease-in',
+	    transitionProperty: 'transform',
+	    transitionTimingFunction: 'ease-in',
+	    transitionDuration: '0.2s',
+	    transitionDelay: '0.1s',
+	    zIndex: 999,
+	    backgroundColor: '#fff',
+	    borderRadius: 6,
+	    display: 'flex',
+	    flexDirection: 'column'
+	  },
+
+	  mWindowHidden: {
+	    transform: 'translateY(100%)'
+	  },
+
+	  mWindowHeader: {
+	    padding: 8,
+	    display: 'flex',
+	    alignItems: 'center',
+	    borderBottom: '1px solid #eee'
+	  },
+
+	  mWindowHeaderContent: {
+	    flex: 1,
+	    fontWeight: 700,
+	    textAlign: 'left'
+	  },
+
+	  mWindowCloseIcon: {
+	    width: 30,
+	    height: 30,
+	    backgroundColor: 'transparent',
+	    border: 'none',
+	    fontSize: 20,
+	    color: '#333',
+	    textAlign: 'center',
+	    cursor: 'pointer',
+	    borderRadius: 4,
+	    opacity: 0.7,
+	    transition: 'opacity 0.1s linear',
+
+	    '&:hover': {
+	      backgroundColor: '#f5f5f5',
+	      opacity: 1
+	    }
+	  },
+
+	  mWindowBody: {
+	    padding: 8,
+	    flex: 1,
+	    textAlign: 'left'
+	  },
+
+	  mWindowFooter: {
+	    padding: '8px 16px',
+	    backgroundColor: '#f7f7f7',
+	    borderTop: '1px solid #eee',
+	    borderBottomRightRadius: 6,
+	    borderBottomLeftRadius: 6,
+	    display: 'flex',
+	    flexDirection: 'row',
+	    alignItems: 'center',
+	    justifyContent: 'flex-end'
+	  },
+
+	  mWindowFooterContent: {
+	    flex: 1,
+	    color: '#888',
+	    fontSize: 14,
+	    textAlign: 'left'
+	  },
+
+	  mWindowFooterButton: {
+	    marginLeft: 16,
+	    padding: '6px 10px',
+	    border: '1px solid #ccc',
+	    backgroundColor: '#eee',
+	    borderRadius: 3,
+	    cursor: 'pointer',
+
+	    '&:hover': {
+	      backgroundColor: '#ddd'
+	    }
+	  },
+
+	  mWindowFooterButtonOk: {
+	    marginLeft: 16,
+	    padding: '6px 10px',
+	    borderRadius: 3,
+	    cursor: 'pointer',
+	    backgroundColor: '#a7e0fb',
+	    border: '1px solid #a7e0fb',
+
+	    '&:hover': {
+	      backgroundColor: '#a7e0fb'
+	    }
+	  },
+
+	  mBackdrop: {
+	    backgroundColor: 'rgba(0,0,0,0.5)',
+	    position: 'absolute',
+	    top: 0,
+	    bottom: 0,
+	    left: 0,
+	    right: 0,
+	    zIndex: 998,
+	    cursor: 'pointer'
 	  }
 	};
 

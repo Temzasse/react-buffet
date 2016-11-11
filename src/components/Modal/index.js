@@ -5,46 +5,28 @@ import Radium from 'radium';
 import styles from './styles';
 
 const propTypes = {
-  headerText: PropTypes.string,
+  headerContent: PropTypes.string,
   body: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
   ]),
-  footerText: PropTypes.string,
+  footerContent: PropTypes.string,
+  isOpen: PropTypes.bool.isRequired,
+  onClosing: PropTypes.func.isRequired,
 };
 
 class Modal extends Component {
   constructor(props) {
     super(props);
-
-    this.open = this.open.bind(this);
     this.close = this.close.bind(this);
-
-    this.state = {
-      isOpen: false,
-    };
-  }
-
-  componentDidMount() {
-    window.setTimeout(() => {
-      this.open();
-    }, 3000);
-  }
-
-  open() {
-    this.setState({ isOpen: true });
   }
 
   close() {
-    this.setState({ isOpen: false });
-    window.setTimeout(() => {
-      this.open();
-    }, 2000);
+    this.props.onClosing();
   }
 
   render() {
-    const { isOpen } = this.state;
-    const { headerText, footerText, body } = this.props;
+    const { headerContent, footerContent, body, isOpen } = this.props;
 
 
     return (
@@ -52,16 +34,16 @@ class Modal extends Component {
         <div style={[styles.mWindow, !isOpen && styles.mWindowHidden]}>
 
           <div style={styles.mWindowHeader}>
-            <div style={styles.mWindowHeaderContent}>{headerText}</div>
-            <div style={styles.mWindowCloseIcon} onClick={this.close}>
+            <div style={styles.mWindowHeaderContent}>{headerContent}</div>
+            <button style={styles.mWindowCloseIcon} onClick={this.close}>
               &times;
-            </div>
+            </button>
           </div>
 
           <div style={styles.mWindowBody}>{body}</div>
 
           <div style={styles.mWindowFooter}>
-            <div style={styles.mWindowFooterContent}>{footerText}</div>
+            <div style={styles.mWindowFooterContent}>{footerContent}</div>
             <button style={styles.mWindowFooterButton}>
               Cancel
             </button>
@@ -80,8 +62,8 @@ class Modal extends Component {
 
 Modal.propTypes = propTypes;
 Modal.defaultProps = {
-  headerText: 'Hello World',
-  footerText: 'footer',
+  headerContent: 'Hello World',
+  footerContent: 'footer',
   body: 'This is the body of the modal',
 };
 

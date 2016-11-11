@@ -1,0 +1,102 @@
+.Docs {
+  min-height: 100vh;
+  width: 100%;
+
+  .logo {
+    height: 70px;
+  }
+
+  .Docs-header {
+    padding: 20px;
+    background-color: #222;
+    background-position-y: 90%;
+    background-size: cover;
+    min-height: 300px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    position: relative;
+
+    &--content {
+      z-index: 3;
+      text-align: center;
+
+      h1 {
+        margin-bottom: 8px;
+        font-size: 52px;
+        // margin-top: 8px;
+      }
+      h3 {
+        margin-top: 0px;
+        font-weight: 200;
+        font-style: italic;
+      }
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0; right: 0; left: 0;
+      background-color: rgba(0,0,0,0.4);
+    }
+  }
+  .Docs-main {
+    display: flex;
+    flex-direction: row;
+
+    .Docs-sidemenu {
+      width: 220px;
+      padding: 12px 20px;
+
+      h3 {
+        margin-top: 0;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        a {
+          color: #333;
+          font-size: 20px;
+          li {
+            margin-bottom: 12px;
+          }
+        }
+      }
+    }
+
+    .Docs-content {
+      flex: 1;
+      // height: 100vh;
+      // overflow: scroll;
+      padding: 16px;
+
+      section {
+        h1 {
+          margin-top: 12px;
+        }
+        .section-content {
+          display: flex;
+          flex-direction: column;
+
+          .code-example {
+            max-width: 800px;
+          }
+          .result-example {
+
+          }
+        }
+      }
+    }
+  }
+  footer {
+    height: 200px;
+    width: 100%;
+    background-color: darken(#124c59, 10%);
+    color: #124c59;
+  }
+}
