@@ -111,8 +111,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var propTypes = {
 	  children: _react.PropTypes.any.isRequired,
-	  content: _react.PropTypes.string.isRequired
+	  content: _react.PropTypes.string.isRequired,
+	  color: _react.PropTypes.string,
+	  bg: _react.PropTypes.string
 	};
+
+	// Helper
+	function isColorValid(c) {
+	  var ele = document.createElement('div');
+	  ele.style.color = c;
+	  return ele.style.color.length;
+	}
 
 	var Tooltip = function (_Component) {
 	  _inherits(Tooltip, _Component);
@@ -153,12 +162,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      var _props = this.props,
 	          content = _props.content,
-	          children = _props.children;
+	          children = _props.children,
+	          bg = _props.bg,
+	          color = _props.color;
 	      var _state = this.state,
 	          showTooltip = _state.showTooltip,
 	          lPos = _state.lPos;
 
+
 	      var tooltipVisibility = showTooltip ? 'visible' : 'hidden';
+	      var customColors = {};
+
+	      // Add custom colors to tooltip bubble if passed as props
+	      if (bg) {
+	        if (isColorValid(bg)) {
+	          customColors.backgroundColor = bg;
+	          customColors.borderColor = bg;
+	        }
+	      }
+	      if (color) {
+	        if (isColorValid(color)) customColors.color = color;
+	      }
 
 	      return _react2.default.createElement(
 	        'div',
@@ -179,7 +203,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              ref: function ref(_ref) {
 	                _this2.tooltipRef = _ref;
 	              },
-	              style: [_styles2.default.tooltipBubble, { visibility: tooltipVisibility, left: lPos }]
+	              style: [_styles2.default.tooltipBubble, customColors, { visibility: tooltipVisibility, left: lPos }]
 	            },
 	            _react2.default.createElement('span', { style: _styles2.default.tooltipArrow }),
 	            content
@@ -4316,13 +4340,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    left: 0,
 	    display: 'inline-block',
 	    backgroundColor: 'rgba(0,0,0,0.8)',
+	    borderColor: 'rgba(0,0,0,0.8)',
 	    borderRadius: 3,
 	    minHeight: 30,
 	    minWidth: 100,
 	    padding: 6,
 	    color: '#fff',
 	    zIndex: tooltipZ,
-	    fontSize: 12,
+	    fontSize: 14,
 	    boxSizing: 'border-box'
 	  },
 
@@ -4331,7 +4356,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    height: 0,
 	    borderLeft: tooltipArrowHeight + 'px solid transparent',
 	    borderRight: tooltipArrowHeight + 'px solid transparent',
-	    borderTop: tooltipArrowHeight + 'px solid rgba(0,0,0,0.8)',
+	    borderTop: tooltipArrowHeight + 'px solid',
+	    borderTopColor: 'inherit',
 	    position: 'absolute',
 	    bottom: '-' + tooltipArrowHeight + 'px',
 	    left: 'calc(50% - ' + tooltipArrowHeight + 'px)'
@@ -4374,11 +4400,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	var propTypes = {
-	  headerContent: _react.PropTypes.string,
-	  body: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element]),
-	  footerContent: _react.PropTypes.string,
+	  title: _react.PropTypes.string,
+	  children: _react.PropTypes.any,
 	  isOpen: _react.PropTypes.bool.isRequired,
-	  onClosing: _react.PropTypes.func.isRequired
+	  onClose: _react.PropTypes.func.isRequired
 	};
 
 	var Modal = function (_Component) {
@@ -4396,15 +4421,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(Modal, [{
 	    key: 'close',
 	    value: function close() {
-	      this.props.onClosing();
+	      this.props.onClose();
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _props = this.props,
-	          headerContent = _props.headerContent,
-	          footerContent = _props.footerContent,
-	          body = _props.body,
+	          title = _props.title,
+	          children = _props.children,
 	          isOpen = _props.isOpen;
 
 
@@ -4420,7 +4444,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _react2.default.createElement(
 	              'div',
 	              { style: _styles2.default.mWindowHeaderContent },
-	              headerContent
+	              title
 	            ),
 	            _react2.default.createElement(
 	              'button',
@@ -4431,26 +4455,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          _react2.default.createElement(
 	            'div',
 	            { style: _styles2.default.mWindowBody },
-	            body
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { style: _styles2.default.mWindowFooter },
-	            _react2.default.createElement(
-	              'div',
-	              { style: _styles2.default.mWindowFooterContent },
-	              footerContent
-	            ),
-	            _react2.default.createElement(
-	              'button',
-	              { style: _styles2.default.mWindowFooterButton },
-	              'Cancel'
-	            ),
-	            _react2.default.createElement(
-	              'button',
-	              { style: _styles2.default.mWindowFooterButtonOk },
-	              'Accept Terms'
-	            )
+	            children
 	          )
 	        ),
 	        _react2.default.createElement('div', { style: _styles2.default.mBackdrop, onClick: this.close })
@@ -4462,11 +4467,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_react.Component);
 
 	Modal.propTypes = propTypes;
-	Modal.defaultProps = {
-	  headerContent: 'Hello World',
-	  footerContent: 'footer',
-	  body: 'This is the body of the modal'
-	};
 
 	exports.default = (0, _radium2.default)(Modal);
 
@@ -4507,7 +4507,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    boxShadow: '0px 6px 18px rgba(0, 0, 0, 0.7)',
 	    transform: 'translateY(0)',
 	    willChange: 'transform',
-	    // transition: 'transform 0.2s ease-in',
 	    transitionProperty: 'transform',
 	    transitionTimingFunction: 'ease-in',
 	    transitionDuration: '0.2s',
@@ -4539,11 +4538,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mWindowCloseIcon: {
 	    width: 30,
 	    height: 30,
+	    padding: 0,
 	    backgroundColor: 'transparent',
 	    border: 'none',
 	    fontSize: 20,
 	    color: '#333',
-	    textAlign: 'center',
+	    display: 'flex',
+	    alignItems: 'center',
+	    justifyContent: 'center',
 	    cursor: 'pointer',
 	    borderRadius: 4,
 	    opacity: 0.7,
@@ -4559,51 +4561,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    padding: 8,
 	    flex: 1,
 	    textAlign: 'left'
-	  },
-
-	  mWindowFooter: {
-	    padding: '8px 16px',
-	    backgroundColor: '#f7f7f7',
-	    borderTop: '1px solid #eee',
-	    borderBottomRightRadius: 6,
-	    borderBottomLeftRadius: 6,
-	    display: 'flex',
-	    flexDirection: 'row',
-	    alignItems: 'center',
-	    justifyContent: 'flex-end'
-	  },
-
-	  mWindowFooterContent: {
-	    flex: 1,
-	    color: '#888',
-	    fontSize: 14,
-	    textAlign: 'left'
-	  },
-
-	  mWindowFooterButton: {
-	    marginLeft: 16,
-	    padding: '6px 10px',
-	    border: '1px solid #ccc',
-	    backgroundColor: '#eee',
-	    borderRadius: 3,
-	    cursor: 'pointer',
-
-	    '&:hover': {
-	      backgroundColor: '#ddd'
-	    }
-	  },
-
-	  mWindowFooterButtonOk: {
-	    marginLeft: 16,
-	    padding: '6px 10px',
-	    borderRadius: 3,
-	    cursor: 'pointer',
-	    backgroundColor: '#a7e0fb',
-	    border: '1px solid #a7e0fb',
-
-	    '&:hover': {
-	      backgroundColor: '#a7e0fb'
-	    }
 	  },
 
 	  mBackdrop: {
