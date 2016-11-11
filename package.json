@@ -32,9 +32,9 @@
     "collection"
   ],
   "files": [
-    "*.js",
     "*.md",
-    "umd"
+    "umd",
+    "dist"
   ],
   "author": "Teemu Taskula <themetor@gmail.com>",
   "license": "MIT",
@@ -83,9 +83,6 @@
     "webpack": "1.13.3"
   },
   "config": {
-    "ghooks": {
-      "pre-commit": "npm run cover && npm run check-coverage"
-    },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
