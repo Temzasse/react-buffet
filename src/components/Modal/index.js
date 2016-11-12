@@ -9,6 +9,7 @@ const propTypes = {
   children: PropTypes.any,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  maxWidth: PropTypes.number,
 };
 
 class Modal extends Component {
@@ -22,11 +23,23 @@ class Modal extends Component {
   }
 
   render() {
-    const { title, children, isOpen } = this.props;
+    const { title, children, isOpen, maxWidth } = this.props;
+    const customWidth = {};
+
+    // Width < 200px or > 900px will make the modal deformed
+    if (maxWidth && maxWidth >= 200 && maxWidth <= 1000) {
+      customWidth.maxWidth = maxWidth;
+    }
 
     return (
       <div style={[styles.Modal, !isOpen && styles.ModalHidden]}>
-        <div style={[styles.mWindow, !isOpen && styles.mWindowHidden]}>
+        <div
+          style={[
+            styles.mWindow,
+            !isOpen && styles.mWindowHidden,
+            customWidth,
+          ]}
+        >
           <div style={styles.mWindowHeader}>
             <div style={styles.mWindowHeaderContent}>{title}</div>
             <button style={styles.mWindowCloseIcon} onClick={this.close}>

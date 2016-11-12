@@ -12,6 +12,7 @@ export default {
     transition: 'opacity 0.3s ease-in',
     willChange: 'opacity',
     zIndex: 997,
+    color: '#333',
   },
 
   ModalHidden: {
