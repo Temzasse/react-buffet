@@ -12,7 +12,8 @@ export const tooltip =
 export const modalJS =
 `constructor() {
   this.state = {
-    modalOpen: false
+    modalOpen: false,
+    biggerModal: false,
   }
 }
 
@@ -26,7 +27,9 @@ closeModal() {
 `;
 
 export const modalHTML =
-`<button onClick={this.openModal}>
+`... and in render method
+
+<button onClick={this.openModal}>
   Open Modal
 </button>
 
@@ -34,6 +37,7 @@ export const modalHTML =
   isOpen={this.state.modalOpen}
   onClose={this.closeModal}
   title='Test Modal Header'
+  maxWidth={this.state.biggerModal ? 900 : null}
 >
   <div>
     <h2>Hello World!</h2>
