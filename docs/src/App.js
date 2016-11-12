@@ -20,6 +20,7 @@ class App extends Component {
 
     this.state = {
       modalOpen: false,
+      biggerModal: false,
     };
   }
 
@@ -32,7 +33,7 @@ class App extends Component {
   }
 
   render() {
-    const { modalOpen } = this.state;
+    const { modalOpen, biggerModal } = this.state;
 
     return (
       <div className='Docs'>
@@ -113,13 +114,28 @@ class App extends Component {
                   <button onClick={this.openModal}>
                     Open Modal
                   </button>
+                  <span style={{ marginRight: 20 }} />
+                  <label>
+                    Make modal huuuuge again
+                    <input
+                      type='checkbox'
+                      checked={biggerModal}
+                      onChange={
+                        () => this.setState({ biggerModal: !biggerModal})
+                      }
+                    />
+                  </label>
                   <Modal
                     isOpen={modalOpen}
                     onClose={this.closeModal}
                     title='Test Modal Header'
+                    maxWidth={biggerModal ? 900 : null}
                   >
                     <div>
                       <h2>Hello World!</h2>
+                      <button>I'm a button</button>
+                      <p>Cute cat pic, why not.</p>
+                      <img src='http://placekitten.com/200/100' role='presentation' />
                     </div>
                   </Modal>
                 </div>
@@ -139,6 +155,8 @@ class App extends Component {
               <div className='section-content'>
                 <div className='result-example'>
                   <LineSpinner />
+                  <span style={{ marginRight: 60 }} />
+                  <LineSpinner size='sm' color='#f296ff' />
                   <span style={{ marginRight: 60 }} />
                   <CircleSpinner size='lg' />
                   <span style={{ marginRight: 60 }} />
