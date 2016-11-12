@@ -8,6 +8,9 @@ import * as codeSnippets from './codeSnippets';
 // components
 import Tooltip from 'react-buffet/Tooltip';
 import Modal from 'react-buffet/Modal';
+import LineSpinner from 'react-buffet/LineSpinner';
+import CircleSpinner from 'react-buffet/CircleSpinner';
+import BallSpinner from 'react-buffet/BallSpinner';
 
 class App extends Component {
   constructor(props) {
@@ -51,6 +54,9 @@ class App extends Component {
               </a>
               <a href='#modal'>
                 <li>Modal</li>
+              </a>
+              <a href='#spinner'>
+                <li>Loading Spinners</li>
               </a>
             </ul>
           </aside>
@@ -123,6 +129,24 @@ class App extends Component {
                   </Highlight>
                   <Highlight className='html'>
                     {codeSnippets.modalHTML}
+                  </Highlight>
+                </div>
+              </div>
+            </section>
+
+            <section id='spinner'>
+              <h2>Loading Spinners</h2>
+              <div className='section-content'>
+                <div className='result-example'>
+                  <LineSpinner />
+                  <span style={{ marginRight: 60 }} />
+                  <CircleSpinner size='lg' />
+                  <span style={{ marginRight: 60 }} />
+                  <BallSpinner size='md' color='tomato' />
+                </div>
+                <div className='code-example'>
+                  <Highlight className='html'>
+                    {codeSnippets.spinnerHTML}
                   </Highlight>
                 </div>
               </div>

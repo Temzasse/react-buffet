@@ -40,3 +40,10 @@ export const modalHTML =
   </div>
 </Modal>
 `;
+
+export const spinnerHTML =
+`// You can give "size" sm|md|lg or "color" prop to spinner
+<LineSpinner />
+<CircleSpinner size='lg' />
+<BallSpinner size='md' color='tomato' />
+`;

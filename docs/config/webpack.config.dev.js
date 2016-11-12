@@ -82,7 +82,10 @@ module.exports = {
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
       'react-buffet/Tooltip': path.join(BUFFET_SRC, 'Tooltip'),
-      'react-buffet/Modal': path.join(BUFFET_SRC, 'Modal')
+      'react-buffet/Modal': path.join(BUFFET_SRC, 'Modal'),
+      'react-buffet/LineSpinner': path.join(BUFFET_SRC, 'LineSpinner'),
+      'react-buffet/CircleSpinner': path.join(BUFFET_SRC, 'CircleSpinner'),
+      'react-buffet/BallSpinner': path.join(BUFFET_SRC, 'BallSpinner')
     }
   },
 
