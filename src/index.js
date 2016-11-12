@@ -6,8 +6,14 @@
 
 import Tooltip from './components/Tooltip';
 import Modal from './components/Modal';
+import LineSpinner from './components/LineSpinner';
+import CircleSpinner from './components/CircleSpinner';
+import BallSpinner from './components/BallSpinner';
 
 module.exports = {
   Tooltip,
   Modal,
+  LineSpinner,
+  CircleSpinner,
+  BallSpinner,
 };
