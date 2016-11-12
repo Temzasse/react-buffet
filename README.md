@@ -1,6 +1,6 @@
 # React Buffet
 
-<img src="/logo/react-buffet-logo.svg" height="120"/>
+<img src="https://cdn.rawgit.com/temzasse/react-buffet/master/logo/react-buffet-logo.svg" height="120"/>
 
 Collection of reusable React.js components.
 
