@@ -3,6 +3,7 @@ body {
   padding: 0;
   font-family: 'Dosis', sans-serif;
   font-size: 18px;
+  word-wrap: break-word;
 }
 
 p {
@@ -32,13 +33,13 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: 38px;
+  font-size: 2.2rem;
 }
 h2 {
-  font-size: 30px;
+  font-size: 1.8rem;
 }
 h3 {
-  font-size: 22px;
+  font-size: 1.4rem;
 }
 
 button {
@@ -50,6 +51,18 @@ button {
 }
 
 code {
-  padding: 12px !important;
+  padding: 0px;
   border-radius: 3px;
+}
+
+@media (max-width: 800px) {
+  body {
+    font-size: 16px;
+  }
+  p, .code-highlight {
+    max-width: 100%;
+  }
+  .code-highlight {
+    overflow-x: auto;
+  }
 }

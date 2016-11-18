@@ -50,8 +50,22 @@ export const modalHTML =
 
 export const spinnerHTML =
 `// You can give "size" sm|md|lg or "color" prop to spinner
-<LineSpinner />
 <LineSpinner size='sm' color='#f296ff' />
-<CircleSpinner size='lg' />
+<LineSpinner />
 <BallSpinner size='md' color='tomato' />
+<CircleSpinner size='lg' />
+`;
+
+export const sliderJS =
+`const images = [
+  'http://placekitten.com/400/400',
+  'base64-encoded-image-is-also-fine',
+  require('images/some-random-image.png'),
+];
+`;
+
+export const sliderHTML =
+`// You can give "cover" true|false prop
+// to make slide images cover the entire slide or fit inside it
+<ImageSlider images={images} cover={false} />
 `;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Highlight from 'react-highlight';
-import logo from './images/react-buffet-logo2.svg';
+import logo from './images/react-buffet-logo.svg';
 import headerBg from './images/header-bg.jpg';
 import './App.scss';
 import * as codeSnippets from './codeSnippets';
@@ -11,6 +11,7 @@ import Modal from 'react-buffet/Modal';
 import LineSpinner from 'react-buffet/LineSpinner';
 import CircleSpinner from 'react-buffet/CircleSpinner';
 import BallSpinner from 'react-buffet/BallSpinner';
+import ImageSlider from 'react-buffet/ImageSlider';
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +35,19 @@ class App extends Component {
 
   render() {
     const { modalOpen, biggerModal } = this.state;
+    let sliderImages = [
+      'http://placekitten.com/400/400',
+      'http://placekitten.com/400/500',
+      'http://placekitten.com/600/500',
+      'http://placekitten.com/300/500',
+    ];
+
+    if (process.env.NODE_ENV === 'development') {
+      sliderImages = [
+        require('./images/test-img-1.png'),
+        require('./images/test-img-2.svg'),
+      ];
+    }
 
     return (
       <div className='Docs'>
@@ -153,18 +167,35 @@ class App extends Component {
             <section id='spinner'>
               <h2>Loading Spinners</h2>
               <div className='section-content'>
-                <div className='result-example'>
-                  <LineSpinner />
-                  <span style={{ marginRight: 60 }} />
+                <div className='result-example' style={{ flexDirection: 'row' }}>
                   <LineSpinner size='sm' color='#f296ff' />
                   <span style={{ marginRight: 60 }} />
-                  <CircleSpinner size='lg' />
+                  <LineSpinner />
                   <span style={{ marginRight: 60 }} />
                   <BallSpinner size='md' color='tomato' />
+                  <span style={{ marginRight: 60 }} />
+                  <CircleSpinner size='lg' />
                 </div>
                 <div className='code-example'>
                   <Highlight className='html'>
                     {codeSnippets.spinnerHTML}
+                  </Highlight>
+                </div>
+              </div>
+            </section>
+
+            <section id='imageslider'>
+              <h2>Image Slider</h2>
+              <div className='section-content'>
+                <div className='result-example'>
+                  <ImageSlider images={sliderImages} cover={false} />
+                </div>
+                <div className='code-example'>
+                  <Highlight className='html'>
+                    {codeSnippets.sliderJS}
+                  </Highlight>
+                  <Highlight className='html'>
+                    {codeSnippets.sliderHTML}
                   </Highlight>
                 </div>
               </div>

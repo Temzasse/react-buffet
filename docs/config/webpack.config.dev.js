@@ -85,7 +85,8 @@ module.exports = {
       'react-buffet/Modal': path.join(BUFFET_SRC, 'Modal'),
       'react-buffet/LineSpinner': path.join(BUFFET_SRC, 'LineSpinner'),
       'react-buffet/CircleSpinner': path.join(BUFFET_SRC, 'CircleSpinner'),
-      'react-buffet/BallSpinner': path.join(BUFFET_SRC, 'BallSpinner')
+      'react-buffet/BallSpinner': path.join(BUFFET_SRC, 'BallSpinner'),
+      'react-buffet/ImageSlider': path.join(BUFFET_SRC, 'ImageSlider')
     }
   },
 
