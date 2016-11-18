@@ -71,7 +71,7 @@ export default {
     opacity: 0.7,
     transition: 'opacity 0.1s linear',
 
-    '&:hover': {
+    ':hover': {
       backgroundColor: '#f5f5f5',
       opacity: 1,
     },

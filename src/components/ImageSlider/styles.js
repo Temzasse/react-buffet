@@ -85,6 +85,7 @@ export default {
     height: 50,
     width: 50,
     flex: 'none',
+    backgroundColor: '#444',
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
