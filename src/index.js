@@ -9,6 +9,7 @@ import Modal from './components/Modal';
 import LineSpinner from './components/LineSpinner';
 import CircleSpinner from './components/CircleSpinner';
 import BallSpinner from './components/BallSpinner';
+import ImageSlider from './components/ImageSlider';
 
 module.exports = {
   Tooltip,
@@ -16,4 +17,5 @@ module.exports = {
   LineSpinner,
   CircleSpinner,
   BallSpinner,
+  ImageSlider,
 };
