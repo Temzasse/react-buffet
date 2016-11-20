@@ -67,5 +67,7 @@ export const sliderJS =
 export const sliderHTML =
 `// You can give "cover" true|false prop
 // to make slide images cover the entire slide or fit inside it
-<ImageSlider images={images} cover={false} />
+// Also try providing "themeColor" prop to change component colors (defaults to #333)
+
+<ImageSlider images={images} cover={false} themeColor='#333' />
 `;

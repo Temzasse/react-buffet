@@ -1,3 +1,5 @@
+@import "variables";
+
 body {
   margin: 0;
   padding: 0;
@@ -9,6 +11,20 @@ body {
 p {
   line-height: 1.5;
   max-width: 800px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+}
+
+input[type="text"] {
+  border: 1px solid $light-color;
+  border-radius: 4px;
+  background-color: $dark-color;
+  padding: 8px;
+  color: $lightest-color;
+  font-size: 1rem;
 }
 
 .code-highlight {
@@ -64,5 +80,8 @@ code {
   }
   .code-highlight {
     overflow-x: auto;
+  }
+  .hide-sm {
+    display: none;
   }
 }

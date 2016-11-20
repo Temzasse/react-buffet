@@ -1,0 +1,10 @@
+$main-color: #282c34;
+$light-color: lighten($main-color, 10%);
+$lighter-color: lighten($main-color, 20%);
+$lightest-color: lighten($main-color, 30%);
+$dark-color: darken($main-color, 10%);
+$darker-color: darken($main-color, 20%);
+$darkest-color: darken($main-color, 30%);
+
+$button-color: lighten($main-color, 20%);
+$text-color: lighten($main-color, 50%);

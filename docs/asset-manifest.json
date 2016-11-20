@@ -1,8 +1,10 @@
 {
-  "main.css": "react-buffet/static/css/main.5d2869a9.css",
-  "main.css.map": "react-buffet/static/css/main.5d2869a9.css.map",
-  "main.js": "react-buffet/static/js/main.921a18b0.js",
-  "main.js.map": "react-buffet/static/js/main.921a18b0.js.map",
+  "main.css": "react-buffet/static/css/main.1ef82fd5.css",
+  "main.css.map": "react-buffet/static/css/main.1ef82fd5.css.map",
+  "main.js": "react-buffet/static/js/main.7ab4eba6.js",
+  "main.js.map": "react-buffet/static/js/main.7ab4eba6.js.map",
   "react-buffet/static/media/header-bg.jpg": "react-buffet/static/media/header-bg.19eecf1d.jpg",
-  "react-buffet/static/media/react-buffet-logo.svg": "react-buffet/static/media/react-buffet-logo.b136499f.svg"
+  "react-buffet/static/media/react-buffet-logo.svg": "react-buffet/static/media/react-buffet-logo.b136499f.svg",
+  "react-buffet/static/media/test-img-1.png": "react-buffet/static/media/test-img-1.37fe8322.png",
+  "react-buffet/static/media/test-img-2.svg": "react-buffet/static/media/test-img-2.61a15dce.svg"
 }

@@ -1,3 +1,5 @@
+@import "variables";
+
 .Docs {
   min-height: 100vh;
   width: 100%;
@@ -79,7 +81,7 @@
           margin-top: 12px;
         }
         .section-content {
-          color: lighten(#282c34, 50%);
+          color: $text-color;
           display: flex;
           flex-direction: column;
 
@@ -88,20 +90,22 @@
             overflow-x: auto;
             font-size: 0.8rem;
             padding: 8px !important;
+            background-color: $main-color;
 
             pre {
               margin: 0px;
               code {
                 border-radius: 0px;
+                line-height: 1.46;
               }
             }
           }
           .result-example {
             margin-top: 16px;
             padding: 12px;
-            border: 5px solid #282c34;
-            background-color: #282c34;
-            border-bottom: 1px solid lighten(#282c34, 15%);
+            border: 5px solid $main-color;
+            background-color: $main-color;
+            border-bottom: 1px solid $lighter-color;
             max-width: 100%;
             position: relative;
             border-bottom-right-radius: 0px;
@@ -111,8 +115,25 @@
             align-items: center;
             flex-wrap: wrap;
 
-            input {
-              margin-left: 8px;
+            label {
+              margin-right: 12px;
+              input {
+                margin-left: 8px;
+              }
+            }
+
+            .component-controls {
+              padding-bottom: 12px;
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+
+              label {
+                margin-bottom: 12px;
+              }
+              p {
+                margin-bottom: 0;
+              }
             }
 
             &:before {
@@ -133,9 +154,13 @@
             }
 
             button {
-              background-color: lighten(#282c34, 20%);
+              background-color: $button-color;
               border-width: 0px;
               color: #fff;
+
+              &[disabled] {
+                opacity: 0.4;
+              }
             }
           }
         }
@@ -145,8 +170,8 @@
   footer {
     height: 200px;
     width: 100%;
-    background-color: darken(#124c59, 10%);
-    color: #124c59;
+    background-color: $dark-color;
+    color: $text-color;
   }
 }
 
@@ -173,8 +198,13 @@
       .Docs-content {
         .result-example {
           flex-direction: column;
+          align-items: flex-start !important;
+
           & > * {
             margin-bottom: 10px;
+          }
+          .modal-size-control {
+            display: none;
           }
         }
       }

@@ -18,10 +18,13 @@ class App extends Component {
     super(props);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleColorChange = this.handleColorChange.bind(this);
 
     this.state = {
       modalOpen: false,
       biggerModal: false,
+      coverSlider: false,
+      themeColor: '#222',
     };
   }
 
@@ -33,8 +36,13 @@ class App extends Component {
     this.setState({ modalOpen: true });
   }
 
+  handleColorChange({ target }) {
+    this.setState({ tmpColor: target.value });
+  }
+
   render() {
-    const { modalOpen, biggerModal } = this.state;
+    const { modalOpen, biggerModal, coverSlider, tmpColor, themeColor } = this.state;
+
     let sliderImages = [
       'http://placekitten.com/400/400',
       'http://placekitten.com/400/500',
@@ -42,7 +50,7 @@ class App extends Component {
       'http://placekitten.com/300/500',
     ];
 
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV !== 'development') {
       sliderImages = [
         require('./images/test-img-1.png'),
         require('./images/test-img-2.svg'),
@@ -72,6 +80,9 @@ class App extends Component {
               </a>
               <a href='#spinner'>
                 <li>Loading Spinners</li>
+              </a>
+              <a href='#imageslider'>
+                <li>Image Slider</li>
               </a>
             </ul>
           </aside>
@@ -128,8 +139,8 @@ class App extends Component {
                   <button onClick={this.openModal}>
                     Open Modal
                   </button>
-                  <span style={{ marginRight: 20 }} />
-                  <label>
+                  <span className='hide-sm' style={{ marginRight: 20 }} />
+                  <label className='modal-size-control'>
                     Make modal huuuuge again
                     <input
                       type='checkbox'
@@ -188,10 +199,44 @@ class App extends Component {
               <h2>Image Slider</h2>
               <div className='section-content'>
                 <div className='result-example'>
-                  <ImageSlider images={sliderImages} cover={false} />
+                  <div className='component-controls'>
+                    <label>
+                      Make images cover the slide
+                      <input
+                        type='checkbox'
+                        checked={coverSlider}
+                        onChange={
+                          () => this.setState({ coverSlider: !coverSlider})
+                        }
+                      />
+                    </label>
+                    <label>
+                      Change theme color
+                      <input
+                        type='text'
+                        onChange={this.handleColorChange}
+                      />
+                    </label>
+                    <button
+                      disabled={!tmpColor}
+                      onClick={() => this.setState({ themeColor: tmpColor })}
+                    >
+                      Change color
+                    </button>
+                    <p>
+                      The component will generate the theme color palette
+                      based on given main color.
+                      Main color is used as the background color of the thubnails section.
+                    </p>
+                  </div>
+                  <ImageSlider
+                    images={sliderImages}
+                    cover={coverSlider}
+                    themeColor={themeColor}
+                  />
                 </div>
                 <div className='code-example'>
-                  <Highlight className='html'>
+                  <Highlight className='js'>
                     {codeSnippets.sliderJS}
                   </Highlight>
                   <Highlight className='html'>
