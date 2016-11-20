@@ -50,10 +50,12 @@ class App extends Component {
       'http://placekitten.com/300/500',
     ];
 
-    if (process.env.NODE_ENV !== 'development') {
+    if (process.env.NODE_ENV === 'development') {
       sliderImages = [
         require('./images/test-img-1.png'),
+        'http://placekitten.com/400/500',
         require('./images/test-img-2.svg'),
+        'http://placekitten.com/300/500',
       ];
     }
 
